@@ -1,2 +1,9 @@
 server:
   port: 10101
+
+#mongodb://<dbuser>:<dbpassword>@ds157544.mlab.com:57544/dev1
+spring:
+  data:
+    mongodb: ds157544.mlab.com
+    port: 57544
+    database: dev1
