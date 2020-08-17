@@ -2,6 +2,8 @@ package com.languages.languages.handler;
 
 import com.languages.languages.LanguageRepository;
 import com.languages.languages.domain.Language;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
+@Slf4j
 @Configuration
 public class RouterFunctionHandler {
 
@@ -28,7 +31,7 @@ public class RouterFunctionHandler {
     public RouterFunction<?> endpoints(){
         return route(GET("/insert"), this::simpleInsert
         ).andRoute( GET("/languages"),
-                request -> ok().body(Flux.just(languageRepository.findAll()), Language.class)
+                request -> ok().body(languageRepository.findAll(), Language.class)
         );
     }
 
@@ -39,7 +42,7 @@ public class RouterFunctionHandler {
         used.add("mobile");
         Language java = new Language();
         java.setName("Java");
-        java.setLongDescription("java is a OOP language");
+        java.setLongDescription("java is an OOP language");
         java.setImagePath("https://i2.wp.com/smartpos.com.co/wp-content/uploads/2018/10/191bf3e6-f5e5-4430-abb9-2294aa3bb728-java-logo-512x512.png");
         java.setUsed(used);
 
