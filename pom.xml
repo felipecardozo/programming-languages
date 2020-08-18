@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.languages</groupId>
 	<artifactId>languages</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>languages</name>
 	<description>Microservice retrieves data from DB and expose it as JSON</description>
 
@@ -22,6 +22,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
 
 		<dependency>

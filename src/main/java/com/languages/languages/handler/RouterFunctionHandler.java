@@ -1,10 +1,10 @@
 package com.languages.languages.handler;
 
-import com.languages.languages.LanguageRepository;
 import com.languages.languages.domain.Language;
-import lombok.extern.log4j.Log4j;
+import com.languages.languages.repository.LanguageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -30,9 +30,14 @@ public class RouterFunctionHandler {
     @Bean
     public RouterFunction<?> endpoints(){
         return route(GET("/insert"), this::simpleInsert
-        ).andRoute( GET("/languages"),
-                request -> ok().body(languageRepository.findAll(), Language.class)
-        );
+        ).andRoute( GET("/languages"), this::findAll
+        ).andRoute( GET("/"),
+                request -> ok().body(Mono.just("Welcome, go to /languages URI"), String.class) );
+    }
+
+    @Cacheable("languages")
+    private Mono<ServerResponse> findAll(ServerRequest request){
+        return ServerResponse.ok().body( languageRepository.findAll(), Language.class );
     }
 
     private Mono<ServerResponse> simpleInsert(ServerRequest request){
