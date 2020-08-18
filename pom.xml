@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.languages</groupId>
 	<artifactId>languages</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>languages</name>
 	<description>Microservice retrieves data from DB and expose it as JSON</description>
 
